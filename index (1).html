@@ -1,0 +1,279 @@
+<!-- <script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>-->
+        <!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids Collection - Inspired by Ralph Lauren</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-container h1 {
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    nav a {
+      color: #666;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: url('https://via.placeholder.com/1920x600?text=Hero+Banner');
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content a {
+      background-color: #fff;
+      color: #333;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .hero-content a:hover {
+      background-color: #e5e5e5;
+    }
+
+    /* Product Grid */
+    .products {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .products h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-card-content {
+      padding: 1rem;
+    }
+
+    .product-card-content h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card-content p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .product-card-content a {
+      display: inline-block;
+      background-color: #333;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .product-card-content a:hover {
+      background-color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 0.75rem;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <h1>Kids Collection</h1>
+      <nav>
+        <a href="#">Boys</a>
+        <a href="#">Girls</a>
+        <a href="#">Baby</a>
+        <a href="#">Sale</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Discover Kids' Fashion</h2>
+      <p>Explore our latest collection of stylish and comfortable clothing for kids.</p>
+      <a href="#">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid" id="product-grid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Kids Collection. All rights reserved.</p>
+    <div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Polo Shirt", price: "$29.99", image: "https://via.placeholder.com/300x400?text=Polo+Shirt" },
+      { id: 2, name: "Denim Jacket", price: "$49.99", image: "https://via.placeholder.com/300x400?text=Denim+Jacket" },
+      { id: 3, name: "Cotton Dress", price: "$39.99", image: "https://via.placeholder.com/300x400?text=Cotton+Dress" },
+      { id: 4, name: "Sneakers", price: "$59.99", image: "https://via.placeholder.com/300x400?text=Sneakers" },
+    ];
+
+    const productGrid = document.getElementById('product-grid');
+
+    products.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      productCard.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-card-content">
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+          <a href="#">Add to Cart</a>
+        </div>
+      `;
+      productGrid.appendChild(productCard);
+    });
+  </script>
+</body>
+</html>
