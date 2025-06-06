@@ -1,0 +1,22 @@
+:root {
+    --bzo-main-color: #81d1e5;
+    --bzo-main-color2: #ff6f96;
+    --bzo-main-color-mix: rgba(154, 218, 234, 1);
+    --bzo-main-color-mix2: rgba(173, 225, 238, 1);
+    --bzo-main-color-mix-bg: rgba(236, 248, 251, 1);
+    --bzo-main-color2-mix: rgba(255, 212, 224, 1);
+    --bzo-gray-color: #454545;
+    --bzo-border-color: #D6D6D6;
+    --bzo-main-color-darken: rgba(103, 167, 183, 1);
+    --bzo-body-background: #ffffff;
+    --bzo-container-width: 1560px;
+    --bzo-preload-background: #81d1e5;}
+
+.new-product{width: 25%;padding: 10px;border: dotted 5px goldenrod;float: left;margin-bottom: 5%;
+
+}
+.discount{width: 25%;padding: 10px;border: dotted 5px goldenrod;float: left;margin-bottom: 5%;
+
+}
+.know-more{clear:both;width: 50%;height: 50px; padding: 10px 50px;border: solid 5px green; margin-top: 10px; margin-bottom: 10px; text-align: center;position: relative;}
+.know-more:hover{background-color: green;color: white;}
